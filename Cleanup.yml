@@ -32,7 +32,7 @@
       register: files1
       
     - debug:
-        msg: "{{ files.files[0].filename }}"
+        msg: "{{ files1.files[0].filename }}"
      
     - name: remove files
       win_file:
