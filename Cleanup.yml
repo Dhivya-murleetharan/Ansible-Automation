@@ -29,17 +29,18 @@
         patterns: ['*.txt']
         file_type: file
 #        recurse: true
-      register: files
+      register: files1
       
     - debug:
         msg: "{{ files.files[0].filename }}"
      
     - name: remove files
       win_file:
-        path: "{{ item }}"
+        path: "{{ item.path }}"
         state: absent
       with_items:
-        - "{{ location }}/{{ '*.txt '}}"
+        - "{{ files1.files}}"
+
      
     - name: get free space
       win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
