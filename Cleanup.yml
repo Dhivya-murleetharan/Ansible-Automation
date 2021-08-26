@@ -26,7 +26,7 @@
     - name: delete file from folder
       win_find: 
         paths: "{{ location }}"
-        patterns: ['*.mp4']
+        patterns: ['*.txt']
         file_type: file
 #        recurse: true
       register: files1
