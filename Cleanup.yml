@@ -1,38 +1,50 @@
 ---
 - hosts: all
   gather_facts: no
+  vars:
+    location: 'C:\Test_Cleanup\'
+#    test: 'test.txt'
   
   tasks:
-  - name: get free space
-    win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
-    register: free_space_before_cleanup
+    - name: get free space
+      win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
+      register: free_space_before_cleanup
     
-  - debug:
-      msg: "Free space before cleanup: {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int*10 / (1024*1024*1024)) | round(2, 'floor') }} GB"
+    - debug:
+        msg: "Free space before cleanup: {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int*10 / (1024*1024*1024)) | round(2, 'floor') }} GB"
+
+#     - name: create the directory in C drive
+#       win_file:
+#         path: "{{ location }}"
+#         state: directory
+
+#     - name: create the file in directory in C drive
+#       win_file:
+#         path: "{{ location }}/{{ test }}"
+#         state: touch
+        
+    - name: delete file from folder
+      win_find: 
+        paths: "{{ location }}"
+        patterns: ['*.txt']
+        file_type: file
+#        recurse: true
+      register: files1
       
-  - name: delete file from folder
-    win_find: 
-      paths: C:\Users\ansible\Desktop\Test
-      patterns: ['*.txt']
-#      state: absent
-    register: files
-  - debug:
-      msg: "{{ files }}"
-      
-  - name: Set fact
-    set_fact:
-      file_name: "{{ files }}"
+    - debug:
+        msg: "{{ files1.files[0].filename }}"
      
-  - name: remove files
-    win_file:
-      path: “{{ file_name }}”
-      state: absent
- #   with_items:
- #   - “{{ file_name.files }}”
+    - name: remove files
+      win_file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items:
+        - "{{ files1.files}}"
+
      
-  - name: get free space
-    win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
-    register: free_space_after_cleanup
+    - name: get free space
+      win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
+      register: free_space_after_cleanup
      
-  - debug:
-      msg: "free_space_after_cleanup: {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int*10 / (1024*1024*1024)) | round(2, 'floor') }} GB"     
+    - debug:
+        msg: "free_space_after_cleanup: {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int*10 / (1024*1024*1024)) | round(2, 'floor') }} GB"     
