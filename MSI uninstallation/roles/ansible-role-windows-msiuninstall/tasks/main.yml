@@ -1,4 +1,4 @@
----
+#---
 # tasks file for ansible-role-windows-msiuninstall
 ---
 - hosts: all
