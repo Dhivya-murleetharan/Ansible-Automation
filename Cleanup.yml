@@ -31,11 +31,11 @@
         file_type: file
 #        recurse: true
       with_items:
-        - "{{ location.split('\n') }}"
+        - "{{ location }}"
       register: files1
       
     - debug:
-        var: "{{ files1.files }}"
+        var: "{{ files1.files.filename }}"
         
      
     - name: remove files
