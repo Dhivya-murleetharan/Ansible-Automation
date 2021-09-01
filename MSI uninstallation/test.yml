@@ -1,5 +1,6 @@
 ---
 - hosts: all
   remote_user: root
-  roles:
-    - ansible-role-windows-msiuninstall
+  tasks:
+  - import_role:
+      name: ansible-role-windows-msiuninstall
