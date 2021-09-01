@@ -35,9 +35,9 @@
       register: files1
       
     - debug:
-        msg: "{{ files1.files[].filename }}"
-#       with_item:
-#         - "{{ files1.files[].filename }}"
+        msg: "{{ item.filename }}"
+      with_item:
+        - "{{ files1.files[] }}"
      
     - name: remove files
       win_file:
