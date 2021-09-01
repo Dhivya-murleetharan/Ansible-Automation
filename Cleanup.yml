@@ -36,7 +36,7 @@
       
     - debug:
         msg: "{{ item.filename }}"
-      with_item:
+      with_items:
         - "{{ files1.files[] }}"
      
     - name: remove files
