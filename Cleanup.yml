@@ -26,11 +26,12 @@
         
     - name: delete file from folder
       win_find: 
-        paths: "{{ location }}"
+        paths: "{{ item.location }}"
         patterns: ['*.txt']
         file_type: file
 #        recurse: true
-      loop: "{{ location.split('\n') }}"
+      with_items:
+        - "{{ location.split('\n') }}"
       register: files1
       
     - debug:
