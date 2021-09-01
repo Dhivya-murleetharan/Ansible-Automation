@@ -12,9 +12,9 @@
   win_package:
 #    path: C:\Program Files\7-Zip\Uninstall.exe
     product_id: "{{product_id}}"
-    arguments: 
-    - /s
-    - /qn
+    # arguments: 
+    # - /s
+    # - /qn
     state: absent
   when: product_id is defined and product_id != ""
   become_method: runas
