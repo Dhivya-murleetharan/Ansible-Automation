@@ -5,8 +5,8 @@
 #  tasks:
 - name: Uninstall an MSI file
   win_msi:
-    path: C:\Program Files (x86)\Notepad++\uninstall.exe
-    # path: "{{msi_path}}"
+    # path: C:\Program Files (x86)\Notepad++\uninstall.exe
+    path: "{{msi_path}}"
     state: absent
   when: msi_path is defined and msi_path != "" 
   become_method: runas
