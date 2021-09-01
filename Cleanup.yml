@@ -30,6 +30,7 @@
         patterns: ['*.txt']
         file_type: file
 #        recurse: true
+      loop: "{{ location.split('\n') }}"
       register: files1
       
     - debug:
