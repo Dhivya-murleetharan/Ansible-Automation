@@ -7,7 +7,7 @@
       win_msi:
         path: "{{msi_path}}"
         state: absent
-      when: "{{msi_path}}" is defined and "{{msi_path}}" != ""
+      when: msi_path is defined and msi_path != ""
     - name: Remove a .msp patch
       win_package:
         product_id: "{{product_id}}"
