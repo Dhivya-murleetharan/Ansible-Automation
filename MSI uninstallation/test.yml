@@ -5,3 +5,4 @@
   tasks:
   - import_role:
       name: ansible-role-windows-msiuninstall
+  
