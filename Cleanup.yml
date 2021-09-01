@@ -35,7 +35,7 @@
       register: files1
       
     - debug:
-        msg: "{{ files1.filename }}"
+        msg: "{{ files1.files }}"
         
      
     - name: remove files
