@@ -8,13 +8,10 @@
     path: "{{msi_path}}"
     state: absent
   when: msi_path is defined and msi_path != "" 
-  become_method: runas
-  become: yes
-  become_user: ansible    
 - name: Remove a .msp patch
   win_package:
-#    path: C:\Program Files\7-Zip\Uninstall.exe
-    product_id: "{{product_id}}"
+    path: "{{product_id}}"
+    #product_id: "{{product_id}}"
     # arguments: 
     # - /s
     # - /qn
