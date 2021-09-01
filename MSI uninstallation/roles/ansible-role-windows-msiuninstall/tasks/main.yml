@@ -10,7 +10,7 @@
   when: msi_path is defined and msi_path != "" 
 - name: Remove a .msp patch
   win_package:
-    path: "C:\Program Files (x86)\Notepad++\uninstall.exe"
+    path: C:\Program Files (x86)\Notepad++\uninstall.exe
     #product_id: "{{product_id}}"
     # arguments: 
     # - /s
