@@ -35,10 +35,8 @@
       register: files1
       
     - debug:
-        msg: "{{ item.filename }}"
-      loop:
-        - "{{ files1[0].files}}"
-        - "{{ files1[1].files}}"
+        msg: "{{ files1.filename }}"
+        
      
     - name: remove files
       win_file:
