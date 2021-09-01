@@ -5,18 +5,18 @@
 #  tasks:
 - name: Uninstall an MSI file
   win_msi:
-    path: "{{msi_path}}"
+    path: C:\Program Files (x86)\Notepad++\uninstall.exe
+    # path: "{{msi_path}}"
     state: absent
   when: msi_path is defined and msi_path != "" 
+  become_method: runas
+  become: yes
+  become_user: ansible
 - name: Remove a .msp patch
   win_package:
-    path: C:\Program Files (x86)\Notepad++\uninstall.exe
-    #product_id: "{{product_id}}"
+    product_id: "{{product_id}}"
     # arguments: 
     # - /s
     # - /qn
     state: absent
-  # when: product_id is defined and product_id != ""
-  become_method: runas
-  become: yes
-  become_user: ansible
+  when: product_id is defined and product_id != ""
