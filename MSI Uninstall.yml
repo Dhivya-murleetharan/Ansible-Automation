@@ -9,7 +9,7 @@
     #     state: absent
     #   when: msi_path is defined and msi_path != ""
     - name: Remove a .msp patch
-      ansible.windows.win_package:
+      win_package:
         product_id: 7-Zip
         arguments: /S
         state: absent
