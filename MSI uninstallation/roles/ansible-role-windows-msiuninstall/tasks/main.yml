@@ -1,8 +1,8 @@
 ---
 
-- name: tasks file for ansible-role-windows-msiuninstall
-  hosts: all
-  tasks:
+# - name: tasks file for ansible-role-windows-msiuninstall
+#   hosts: all
+#   tasks:
 
     - name: Uninstall an MSI file
       win_msi:
