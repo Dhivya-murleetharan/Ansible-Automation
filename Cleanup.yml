@@ -37,7 +37,7 @@
     - debug:
         msg: "{{ item }}"
       loop:
-        - "{{ datafiles.filename}}"
+        - "{{ datafile.filename}}"
      
     - name: remove files
       win_file:
