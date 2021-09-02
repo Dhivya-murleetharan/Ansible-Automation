@@ -37,6 +37,14 @@
     - debug:
         msg: "{{ files1.files.filename }}"
         
+    - name: Get multiple path
+      slurp:
+        src:"{{ item }}"
+      loop: "{{ files1 |json_query('files[].path')}}"
+      register: slurped_files
+    - debug:
+        msg: "{{ item.item }}"
+      loop: "{{ slurped_files.results }}"
      
     - name: remove files
       win_file:
