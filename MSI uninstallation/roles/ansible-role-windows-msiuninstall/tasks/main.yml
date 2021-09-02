@@ -15,7 +15,7 @@
   register: msipath_out
 - debug:
     msg: "Application uninstalled."
-  when: msipath_out.rc==0 and msi_path != "" 
+  when: msipath_out.rc==0
 - name: Remove a .msp patch
   win_package:
     product_id: "{{product_id}}"
@@ -27,4 +27,4 @@
   register: productid_out
 - debug:
     msg: "Application uninstalled."
-  when: productid_out.rc==0 and product_id != ""
+  when: productid_out.rc==0
