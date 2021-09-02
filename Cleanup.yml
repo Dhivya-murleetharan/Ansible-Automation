@@ -34,8 +34,8 @@
         - "{{ location }}"
       register: files1
       
-    - debug:
-        msg: "{{ files1.files.filename }}"
+#     - debug:
+#         msg: "{{ files1.files.filename }}"
         
     - name: Get multiple path
       slurp:
