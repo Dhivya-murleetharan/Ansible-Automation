@@ -35,7 +35,7 @@
       register: files1
       
     - debug:
-        msg: "{{ files1.results| map(attribute='file') }}"
+        msg: "{{ files1.results| map(attribute='file') | list }}"
         
 #     - name: Get multiple path
 #       slurp:
